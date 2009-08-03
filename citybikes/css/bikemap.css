@@ -1,0 +1,36 @@
+#page {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#header {
+	height: 168px;/*Ändra till procent */
+}
+
+#logo {
+	height: 143px;/*Ändra till procent */
+	
+}
+
+#menu {
+    height: 25px; /*Ändra till procent */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#map {
+	height: 525px; /*Ändra till procent */
+	width: 70%;
+	float: left;
+	margin-left: 0%;
+	margin-right: auto;
+
+}
+
+#chat {
+	background-color: blue;
+	height: 525px;/*Ändra till procent */
+	width: 30%;
+	margin-right: 0%;
+	margin-left: auto;
+}
