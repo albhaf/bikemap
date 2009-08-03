@@ -1,0 +1,43 @@
+#page {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#map {
+    width: 800px;
+    height: 600px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+#markers {
+    width: 300px;
+	float: left;
+}
+
+#commands {
+	width: 200px;
+	float: right;
+	}
+	
+
+#col1 {
+    width: 300px;
+/*
+    float: left;
+*/
+	text-decoration: underline;
+    color: #4444ff;
+    font-size: 0.8em;
+}
+
+#col2 {
+    width: 300px;
+/*
+    float: right;
+*/
+	text-decoration: underline;
+    color: #4444ff;
+    font-size: 0.8em;
+}

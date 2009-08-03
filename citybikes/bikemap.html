@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>Stockholm Citybikes</title>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAA_hprDxmv1Up2UhH-EfbiuBTe1WEbx1_HilqHJZAQJiWcIUgdFxQkWyB31Wn6_0_zhYc_73ZTx-zyTw" type="text/javascript"></script>
+    <link type="text/css" rel="stylesheet" href="bikemap.css" />
+  </head>
+  <body onunload="GUnload()">
+
+
+<div id="page">
+	<div id="map"></div>
+	<div id="markers"><select id="stations" onchange="myclick(value)">
+<!--
+	<option value="0">1 Almänna gränd/Gröna Lund</option>
+	<option value="1">2 Götgatan 98/Dalsluindsgatan</option>
+	<option value="2">3 Tjärhovsplan</option>
+	<option value="3">4 Thor Modéns Trappa, Slussen*</option>
+	<option value="4">5 Medborgarplatsen</option>
+	<option value="5">6  Valhallav./Grev Tureg., Stadion*</option>
+	<option value="6">7  Valhallav., Tekniska Högskolan*</option>
+	<option value="7">8  Drottningholmsv. 13, Fridhemsplan*</option>
+	<option value="8">9  S:t Göransg. 143, Stadshagen*</option>
+	<option value="9">10 Fleminggatan 4-6</option>
+	<option value="10">11 Hornsgatan 140, Hornstull*</option>
+	<option value="11">12 Munkbroleden, Gamla Stan*</option>
+	<option value="12">13 Odenplan mot S:t Eriksgatan*</option>
+	<option value="13">14 Odenplan mot Sveavägen*</option>
+	<option value="14">15 S:t Eriksplan 6C*</option>
+	<option value="15">16 Klarabergsgatan 50, T-Centralen*</option>
+	<option value="16">17 Renstiernas Gata 18</option>
+	<option value="17">18 Fatbursgången, Södra Station**</option>
+	<option value="18">20 Folkungag. 134/Stigbergsparken</option>
+	<option value="19">21 Mariatorget 7*</option>
+	<option value="20">22 Södermalmstorg, Slussen*</option>
+	<option value="21">23 Ringvägen 54</option>
+	<option value="22">24 Ringvägen 45A</option>
+	<option value="23">25 Ringvägen 108</option>
+	<option value="24">26 Ringvägen 111, Skanstull*</option>
+	<option value="25">27 Götgatan 71</option>
+	<option value="26">28 Ropsten/Busstorget*</option>
+	<option value="27">29 Norrmalmstorg</option>
+	<option value="28">30 Torsgatan/Vasaparken</option>
+	<option value="29">31 Drottninggatan/Vattugatan</option>
+	<option value="30">32 Hamngatan, Gallerian</option>
+	<option value="31">33 Hammarby Allé/Textilvägen</option>
+	<option value="32">34 Skeppsbrokajen</option>
+	<option value="33">35 Drottningg., T-Centralen*</option>
+	<option value="34">36 Birger Jarlsg. 12, Östermalmstorg*</option>
+	<option value="35">37 Karlbergsvägen 38</option>
+	<option value="36">38 Centralplan, T-Centralen**</option>
+	<option value="37">39 Sveavägen 66</option>
+	<option value="38">40 Sveavägen 110</option>
+	<option value="39">41 Klarabergsgatan 56, T-Centralen*</option>
+	<option value="40">42 Hantverkarg. 1/Stadshuset</option>
+	<option value="41">43 Hantverkarg. 1/Stadshusbron</option>
+	<option value="42">44 Bryggargatan 12B/Vasagatan</option>
+	<option value="43">45 Runebergsplan</option>
+	<option value="44">46 Sturegatan 19</option>
+	<option value="45">47 Ringvägen 138</option>
+	<option value="46">48 Ringvägen 125</option>
+	<option value="47">49 Hamngatan/Kungsträdgården</option>
+	<option value="48">50 Rålambsvägen/Gjörwellsgatan</option>
+	<option value="49">51 Karlaplan/Fältöversten*</option>
+	<option value="50">52 Östermalmsgatan 90</option>
+	<option value="51">53 Kungsgatan 24</option>
+	<option value="52">54 Sveavägen 29</option>
+	<option value="53">55 Sveavägen 31</option>
+	<option value="54">56 Sveavägen 35</option>
+	<option value="55">57 Sveavägen 127/Vanadislunden</option>
+	<option value="56">58 Lindarängsv./Tegeluddsvägen</option>
+	<option value="57">59 Tegeluddsvägen 100</option>
+	<option value="58">60 Sveavägen 53</option>
+	<option value="59">61 Rådmansgatan 2</option>
+	<option value="60">62 S:t Eriksgatan 95</option>
+	<option value="61">63 S:t Eriksgatan 30</option>
+	<option value="62">64 Birkagatan 7-9</option>
+	<option value="63">65 Tegelbacken 6</option>
+	<option value="64">66 Erik Dahlbergsgatan 26</option>
+	<option value="65">67 Karlavägen 115/Garnisonen</option>
+	<option value="66">68 Essinge Brogata/Mariebergsbron</option>
+	<option value="67">69 Södermälarstrand/Münchenbryggeriet</option>
+	<option value="68">70 Folkungagatan/Londonviadukten</option>
+	<option value="69">71 Norr Mälarstrand/Hantverkarg. 3D</option>
+	<option value="70">72 Dannemorag./Norra Stationsg.</option>
+	<option value="71">73 Kaknästornet</option>
+	<option value="72">74 Danvikstull/Kvarnholmsvägen</option>
+-->
+	</select>
+	</div>
+	<div id="commands">
+	<a href="javascript:showAll()">Show all</a>
+	</div>
+</div>
+
+
+
+		<noscript><b>JavaScript must be enabled in order for you to use Google Maps.</b><br>
+      However, it seems JavaScript is either disabled or not supported by your browser. 
+      To view Google Maps, enable JavaScript by changing your browser options, and then 
+      try again.
+    </noscript>
+
+    <script src="bikemap.js" type="text/javascript"></script>
+
+  </body>
+
+</html>
+
+
+
+
