@@ -1,36 +1,53 @@
-#page {
-    margin-left: auto;
-    margin-right: auto;
-}
-
 #header {
-	height: 168px;/*Ändra till procent */
+	height: 183px;
 }
 
 #logo {
-	height: 143px;/*Ändra till procent */
-	
-}
-
-#menu {
-    height: 25px; /*Ändra till procent */
+	height: 183px;
+	width: 302px;
+	float: left;
 	margin-left: auto;
 	margin-right: auto;
 }
 
-#map {
-	height: 525px; /*Ändra till procent */
-	width: 70%;
+#search_form {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#refine_search {
+	height: 45px;
+	width: 1200px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#results {
+	width: 315px;
+	height: 490px;
 	float: left;
 	margin-left: 0%;
 	margin-right: auto;
-
+	overflow: auto;
 }
 
-#chat {
-	background-color: blue;
-	height: 525px;/*Ändra till procent */
-	width: 30%;
-	margin-right: 0%;
+#map {
+	height: 490px;	
+	width: 700px;
 	margin-left: auto;
+	margin-right: auto;
 }
+
+.form_widget_amount_slider{
+		border-top:1px solid #9d9c99;
+		border-left:1px solid #9d9c99;
+		border-bottom:1px solid #eee;
+		border-right:1px solid #eee;
+		background-color:#f0ede0;
+		height:3px;
+		position:absolute;
+		bottom:0px;
+
+		}
+
