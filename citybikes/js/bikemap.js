@@ -17,16 +17,48 @@ if(GBrowserIsCompatible()) {
 
 	function mapInit() {
 		
-		map = new GMap2(document.getElementById('map'));
-		map.addControl(new GLargeMapControl());
-		map.addControl(new GMapTypeControl());
-		map.setCenter(new GLatLng(59.32452, 18.071136), 12);
+		//~ map = new GMap2(document.getElementById('map'));
+		//~ map.addControl(new GLargeMapControl());
+		//~ map.addControl(new GMapTypeControl());
+		//~ map.setCenter(new GLatLng(59.32452, 18.071136), 12);
+		mapDraw(true, null, null);
 		geocoder = new GClientGeocoder();
+		geocoder.setViewport(bounds);
 		//~ if(address) {
 			//~ setAddress(address);
 		//~ } else {
 			//~ drawAllMarkers();
 		//~ }
+	}
+	
+	function mapDraw(allMarkers, point, address) {
+		map = new GMap2(document.getElementById('map'));
+		map.addControl(new GLargeMapControl());
+		map.addControl(new GMapTypeControl());
+		
+		if(point) {
+			map.setCenter(point, 14);
+			
+			var markerIcon = new GIcon(G_DEFAULT_ICON);
+			
+			markerIcon.image = "images/house.jpg";
+			markerIcon.iconSize = new GSize(30,30);
+			markerIcon.iconAnchor = new GPoint(15,15);
+			
+			var marker = new GMarker(point,markerIcon);
+			
+			map.addOverlay(marker);
+			
+			//~ marker.openInfoWindowHtml(address);
+		} else {
+			map.setCenter(new GLatLng(59.32452, 18.071136), 12);
+		}
+		
+		if(allMarkers) {
+			drawAllMarkers();
+		} else {
+			drawClosestMarkers(point);
+		}
 	}
 
 
@@ -36,6 +68,9 @@ if(GBrowserIsCompatible()) {
 			var xmlDoc = GXml.parse(doc);
 			var markers = xmlDoc.documentElement.getElementsByTagName('Placemark');
 
+			//Reset side_bar_html
+			side_bar_html = '';
+			
 			side_bar_html += '<br><table width="100%">';
 			
 			for (var i = 0; i < markers.length; i++) {
@@ -123,15 +158,11 @@ if(GBrowserIsCompatible()) {
 	
 	 function showAll() {
 		//Closes the previously set active marker.
-		activeMarker.closeInfoWindow();
+		//~ activeMarker.closeInfoWindow();
 		
 		map.setZoom(map.getBoundsZoomLevel(bounds));
 		map.setCenter(bounds.getCenter());
   }
-	function clearMarkers() {
-		//Redraw the map until a better method is developed
-		mapInit();
-	}
 			
 
 	function clickMarker(i) {
@@ -153,30 +184,34 @@ if(GBrowserIsCompatible()) {
 		// save the info we need to use later for the side_bar
 		gmarkers.push(marker);
 	
-		// add a station to the side_bar html
-		side_bar_html += '<tr><td><font size="-1"><a href="javascript:clickMarker(' + (gmarkers.length-1) + ')">' + name + '</a></font></td><font size="-1"><td style="white-space: nowrap" align="right">' + parseInt(distance) + ' <em>m</em></td></font></tr>';
+		
+		
+		if(distance) {
+			// add a station to the side_bar html
+			side_bar_html += '<tr><td><font size="-1"><a href="javascript:clickMarker(' + (gmarkers.length-1) + ')">' + name + '</a></font></td><font size="-1"><td style="white-space: nowrap" align="right">' + parseInt(distance) + ' <em>m</em></td></font></tr>';
+		} else {
+			side_bar_html += '<tr><td><font size="-1"><a href="javascript:clickMarker(' + (gmarkers.length-1) + ')">' + name + '</a></font></td><font size="-1"><td style="white-space: nowrap" align="right"></td></font></tr>';
+		 }
 
 		return marker;
 	}
 
 	function setAddress(address) {
-	  
-	  if (geocoder) {
-		geocoder.getLatLng(
-		  address,
-		  function(point) {
-			if (!point) {
-			  alert(address + " not found");
-			} else {
-			  clearMarkers();
-			  map.setCenter(point, 14);
-			  var marker = new GMarker(point);
-			  map.addOverlay(marker);
-			  marker.openInfoWindowHtml(address);
-			  drawClosestMarkers(point);
-			}
+	  if(address) {
+		  if (geocoder) {
+			geocoder.getLatLng(
+			  address,
+			  function(point) {
+				if (!point) {
+				  alert(address + " not found");
+				} else {
+				  mapDraw(false, point, address);
+				}
+			  }
+			);
 		  }
-		);
+	  } else {
+		  mapDraw(true, null, null);
 	  }
 	}
 	
