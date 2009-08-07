@@ -17,20 +17,10 @@ if(GBrowserIsCompatible()) {
 	var bounds = new GLatLngBounds();
 
 	function mapInit() {
-		
-		//~ map = new GMap2(document.getElementById('map'));
-		//~ map.addControl(new GLargeMapControl());
-		//~ map.addControl(new GMapTypeControl());
-		//~ map.setCenter(new GLatLng(59.32452, 18.071136), 12);
 		mapDraw(true, null, null);
 		var mapBounds = map.getBounds();
 		geocoder = new GClientGeocoder();
 		geocoder.setViewport(mapBounds);
-		//~ if(address) {
-			//~ setAddress(address);
-		//~ } else {
-			//~ drawAllMarkers();
-		//~ }
 	}
 	
 	function mapDraw(allMarkers, point, address) {
@@ -115,20 +105,12 @@ if(GBrowserIsCompatible()) {
 		GDownloadUrl('citybikes.kml', function(doc) {
 			var xmlDoc = GXml.parse(doc);
 			var markers = xmlDoc.documentElement.getElementsByTagName('Placemark');
-			
-			//~ var sortedStationArray = new Array();
-			//~ 
-			//~ var closestDistance = 5000; //Need hard coded initial value so that the loop works
-			//~ 
-			//~ var stationInserted = false;
-			
 
 			//Reset side_bar_html
 			side_bar_html = '';
 			
 			side_bar_html += '<br><table width="100%">';
-			
-							
+						
 			
 			for (var i = 0; i < markers.length; i++) {				 
 				// obtain the attribues of each marker
@@ -145,12 +127,11 @@ if(GBrowserIsCompatible()) {
 				html = htmlNode[0].firstChild.nodeValue;
 				}
 				
-				//~ alert("DEBUG| distance: " + point.distanceFrom(addressPoint));
 				
 				var stationDistance = point.distanceFrom(addressPoint);
 				
 				if(stationDistance <= maxDistance) {
-					//~ // create the marker
+					// create the marker
 					var marker = createMarker(point,label,html, stationDistance);
 					map.addOverlay(marker);
 				}
