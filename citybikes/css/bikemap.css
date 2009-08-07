@@ -1,9 +1,9 @@
 #header {
-	height: 183px;
+	height: 120px;
 }
 
 #logo {
-	height: 183px;
+	height: 120px;
 	width: 302px;
 	float: left;
 	margin-left: auto;
@@ -37,6 +37,14 @@
 	width: 700px;
 	margin-left: auto;
 	margin-right: auto;
+}
+
+.stationName {
+	font-size: 0.8em;
+}
+
+.stationDistance {
+	font-size: 0.8em;
 }
 
 .form_widget_amount_slider{

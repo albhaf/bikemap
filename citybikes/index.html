@@ -11,11 +11,10 @@
 		
 </head>
 
-<body onload="mapInit()" onunload="GUnload()">
-	
+<body onload="loadStations()" onunload="GUnload()">
 	
 	<div id="header">
-			<div id="logo"><img src="images/logga2.png" height="100%" width="100%"></div>
+			<div id="logo"><img src="images/loggascb.gif"></div>
 			<div id="search_form">
 				<fieldset>
 					<legend>Search for a station near your location</legend>
@@ -36,7 +35,8 @@
 				
 
 					</form>
-				</fieldset>			
+				</fieldset>
+				<a href="javascript:mapDraw(true,false,null,null)">Show all</a>		
 			</div>
 	</div>
 
