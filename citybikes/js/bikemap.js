@@ -2,6 +2,7 @@ var map = null;
 var geocoder = null;
 
 var maxDistance = 1000;
+var maxStations = 10;
 
 if(GBrowserIsCompatible()) {
 	
@@ -58,6 +59,7 @@ if(GBrowserIsCompatible()) {
 			drawAllMarkers();
 		} else {
 			drawClosestMarkers(point);
+			//~ drawMarkersWithinKM(point);
 		}
 	}
 
@@ -105,55 +107,37 @@ if(GBrowserIsCompatible()) {
 		  });
 	}
 
-	function drawClosestMarkers(addressPoint) {
+	function drawMarkersWithinKM(addressPoint) {
 		// Read the data from citybikes.kml
 		
 		GDownloadUrl('citybikes.kml', function(doc) {
 			var xmlDoc = GXml.parse(doc);
 			var markers = xmlDoc.documentElement.getElementsByTagName('Placemark');
 			
-			var sortedStationArray = new Array;
+			//~ var sortedStationArray = new Array();
+			//~ 
+			//~ var closestDistance = 5000; //Need hard coded initial value so that the loop works
+			//~ 
+			//~ var stationInserted = false;
 			
-			var numberStations = null;
-			
-			var closestStation = 5000; //Need hard coded initial value so that the loop works
 
 			//Reset side_bar_html
 			side_bar_html = '';
 			
 			side_bar_html += '<br><table width="100%">';
 			
-			for (var j = 0; j < markers.length; j++) {
-				var coords = markers[j].getElementsByTagName('coordinates')[0].firstChild.nodeValue.split(',');
-				var lng = parseFloat(coords[0]);
-				var lat = parseFloat(coords[1]);
-				var point = new GLatLng(lat,lng);
-				
-				var stationDistance = point.distanceFrom(addressPoint);
-				
-				if(stationDistance < closestStation) {
-					//~ alert("DEBUG| Added closer station");
-					closestStation = stationDistance;
-					sortedStationArray.unshift(markers[j]);
-				} else {
-					sortedStationArray.push(markers[j]);
-				}
-			}
-				
-				
-				
+							
 			
-			for (var i = 0; i < 10; i++) {	
-							 
+			for (var i = 0; i < markers.length; i++) {				 
 				// obtain the attribues of each marker
-				var coords = sortedStationArray[i].getElementsByTagName('coordinates')[0].firstChild.nodeValue.split(',');
+				var coords = markers[i].getElementsByTagName('coordinates')[0].firstChild.nodeValue.split(',');
 				var lng = parseFloat(coords[0]);
 				var lat = parseFloat(coords[1]);
 				var point = new GLatLng(lat,lng);
 				bounds.extend(point);
 
-				var label = sortedStationArray[i].getElementsByTagName('name')[0].firstChild.nodeValue;
-				var htmlNode = sortedStationArray[i].getElementsByTagName('description')
+				var label = markers[i].getElementsByTagName('name')[0].firstChild.nodeValue;
+				var htmlNode = markers[i].getElementsByTagName('description')
 				var html = label;
 				if(htmlNode.length > 0) {
 				html = htmlNode[0].firstChild.nodeValue;
@@ -163,11 +147,83 @@ if(GBrowserIsCompatible()) {
 				
 				var stationDistance = point.distanceFrom(addressPoint);
 				
-				//~ if(stationDistance <= maxDistance) {
-					// create the marker
+				if(stationDistance <= maxDistance) {
+					//~ // create the marker
 					var marker = createMarker(point,label,html, stationDistance);
 					map.addOverlay(marker);
-				//~ }
+				}
+			}
+
+			
+			//~ showAll();
+			
+			// showAll and closing tag for side_bar_html
+			//~ side_bar_html += '<a href="javascript:showAll()">Show all<\/a><br>\n';
+			side_bar_html += '</table>';
+
+			// put the assembled side_bar_html contents into the results div
+			document.getElementById('results').innerHTML = side_bar_html;
+		  });
+	}
+	
+	function citybikeStation(point, label, html, distance) {
+		this.point = point;
+		this.label = label;
+		this.html = html;
+		this.distance = distance;
+	}
+	
+	function sortMarkersByDistance(a, b) {
+		return(a.distance - b.distance);
+	}
+	
+	function drawClosestMarkers(addressPoint) {
+		// Read the data from citybikes.kml
+		
+		GDownloadUrl('citybikes.kml', function(doc) {
+			var xmlDoc = GXml.parse(doc);
+			var markers = xmlDoc.documentElement.getElementsByTagName('Placemark');
+			
+			var markersArray = new Array();
+			var distanceArray = new Array();
+			
+			// obtain the attribues of each marker
+			
+			for(var f = 0; f < markers.length; f++) {
+				var coords = markers[f].getElementsByTagName('coordinates')[0].firstChild.nodeValue.split(',');
+				var lng = parseFloat(coords[0]);
+				var lat = parseFloat(coords[1]);
+				var point = new GLatLng(lat,lng);
+				bounds.extend(point);
+
+				var label = markers[f].getElementsByTagName('name')[0].firstChild.nodeValue;
+				var htmlNode = markers[f].getElementsByTagName('description')
+				var html = label;
+				if(htmlNode.length > 0) {
+				html = htmlNode[0].firstChild.nodeValue;
+				}
+				
+				var stationDistance = point.distanceFrom(addressPoint);
+
+				markersArray[f] = new citybikeStation(point, label, html, stationDistance);
+			}
+			
+			
+			var sortedMarkersArray = markersArray.sort(sortMarkersByDistance);
+				
+		
+
+			//Reset side_bar_html
+			side_bar_html = '';
+			
+			side_bar_html += '<br><table width="100%">';
+			
+							
+			
+			for (var i = 0; i < maxStations; i++) {				 
+			// create the marker
+			var marker = createMarker(sortedMarkersArray[i].point,sortedMarkersArray[i].label,sortedMarkersArray[i].html, sortedMarkersArray[i].distance);
+			map.addOverlay(marker);
 			}
 
 			
