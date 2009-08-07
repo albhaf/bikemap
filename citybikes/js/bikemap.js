@@ -4,6 +4,8 @@ var geocoder = null;
 var maxDistance = 1000;
 var maxStations = 10;
 
+var activeMarker = new GMarker(new GLatLng(59.32452, 18.071136));
+
 if(GBrowserIsCompatible()) {
 	
 	
@@ -57,6 +59,8 @@ if(GBrowserIsCompatible()) {
 
 
 	function drawAllMarkers() {
+		
+		
 		// Read the data from citybikes.kml
 		GDownloadUrl('citybikes.kml', function(doc) {
 			var xmlDoc = GXml.parse(doc);
@@ -223,7 +227,7 @@ if(GBrowserIsCompatible()) {
 	
 	 function showAll() {
 		//Closes the previously set active marker.
-		//~ activeMarker.closeInfoWindow();
+		activeMarker.closeInfoWindow();
 		
 		map.setZoom(map.getBoundsZoomLevel(bounds));
 		map.setCenter(bounds.getCenter());
