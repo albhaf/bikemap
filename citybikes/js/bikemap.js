@@ -23,8 +23,9 @@ if(GBrowserIsCompatible()) {
 		//~ map.addControl(new GMapTypeControl());
 		//~ map.setCenter(new GLatLng(59.32452, 18.071136), 12);
 		mapDraw(true, null, null);
+		var mapBounds = map.getBounds();
 		geocoder = new GClientGeocoder();
-		geocoder.setViewport(bounds);
+		geocoder.setViewport(mapBounds);
 		//~ if(address) {
 			//~ setAddress(address);
 		//~ } else {
@@ -36,6 +37,7 @@ if(GBrowserIsCompatible()) {
 		map = new GMap2(document.getElementById('map'));
 		map.addControl(new GLargeMapControl());
 		map.addControl(new GMapTypeControl());
+		
 		
 		if(point) {
 			map.setCenter(point, 14);
