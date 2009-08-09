@@ -1,3 +1,7 @@
+// Bikemap.js
+// Author: Albert Hafvenström <albhaf@gmail.com>
+//
+// Version: 0.1-rc3
 
 var stationsArray = new Array();
 	
@@ -100,7 +104,7 @@ if(GBrowserIsCompatible()) {
 	}
 
 
-	function drawAllMarkers() {
+	function drawAllMarkers(address) {
 			//Reset side_bar_html
 			side_bar_html = '';
 			
