@@ -1,5 +1,5 @@
 /*
-// Bikemap.js
+// bikemap.css
 // Author: Albert Hafvenström <albhaf@gmail.com>
 //
 // Version: 0.1-rc3
@@ -7,6 +7,14 @@
 
 #header {
 	height: 120px;
+}
+
+#footer {
+	height: 50px;
+	width: 320px;
+	font-size: 0.7em;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #logo {

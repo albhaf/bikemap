@@ -1,4 +1,4 @@
-// Bikemap.js
+// bikemap.js
 // Author: Albert Hafvenström <albhaf@gmail.com>
 //
 // Version: 0.1-rc3
