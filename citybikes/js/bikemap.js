@@ -104,7 +104,7 @@ if(GBrowserIsCompatible()) {
 	}
 
 
-	function drawAllMarkers(address) {
+	function drawAllMarkers() {
 			//Reset side_bar_html
 			side_bar_html = '';
 			
@@ -131,7 +131,8 @@ if(GBrowserIsCompatible()) {
 	
 	
 	function drawClosestMarkers(addressPoint) {
-			var sortedMarkersArray = stationsArray; 
+			var sortedMarkersArray = stationsArray.slice(); // Creates new array so that stationsArray doesn't get sorted
+
 			sortedMarkersArray.sort(function(a, b) {  return (a.point.distanceFrom(addressPoint) - b.point.distanceFrom(addressPoint));   });
 			
 			//Reset side_bar_html
