@@ -74,6 +74,7 @@ if(GBrowserIsCompatible()) {
 		map = new GMap2(document.getElementById('map'));
 		map.addControl(new GLargeMapControl());
 		map.addControl(new GMapTypeControl());
+		map.enableScrollWheelZoom();
 		map.setCenter(new GLatLng(59.32452, 18.071136), 12);
 		var mapBounds = map.getBounds();
 		geocoder = new GClientGeocoder();
