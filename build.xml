@@ -1,5 +1,11 @@
 <?xml version="1.0"?>
 <project name="bikemap" default="compile">
+	<path id="libraries">
+		<fileset dir="./lib">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
 	<target name="clean" description="remove intermediate files">
 		<delete dir="citybikes/WEB-INF/classes" />
 	</target>
@@ -10,7 +16,9 @@
 
 	<target name="compile" description="compile the Java source code to class files">
 		<mkdir dir="citybikes/WEB-INF/classes" />
-		<javac srcdir="src" destdir="citybikes/WEB-INF/classes" />
+		<javac srcdir="src" destdir="citybikes/WEB-INF/classes">
+			<classpath refid="libraries" />
+		</javac>
 	</target>
 
 	<target name="jar" depends="compile" description="create jar file">
