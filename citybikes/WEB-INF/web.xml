@@ -5,7 +5,7 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 
 	<servlet>
 		<servlet-name>register</servlet-name>
-		<servlet-class>com.albhaf.foobar.registerAddress</servlet-class>
+		<servlet-class>com.albhaf.bikemap.registerAddress</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>register</servlet-name>
