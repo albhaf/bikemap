@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project name="bikemap" default="compile">
+	<target name="clean" description="remove intermediate files">
+		<delete dir="citybikes/WEB-INF/classes" />
+	</target>
+
+	<target name="clobber" depends="clean" description="remove all artifact files">
+		<delete file="citybikes.jar" />
+	</target>
+
+	<target name="compile" description="compile the Java source code to class files">
+		<mkdir dir="citybikes/WEB-INF/classes" />
+		<javac srcdir="src" destdir="citybikes/WEB-INF/classes" />
+	</target>
+
+	<target name="jar" depends="compile" description="create jar file">
+		<jar destfile="citybikes.jar">
+			<fileset dir="citybikes" includes="" />
+			<manifest>
+				<attribute name="Main-Class" value="CityBikes" />
+			</manifest>
+		</jar>
+	</target>
+</project>
