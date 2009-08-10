@@ -3,6 +3,7 @@
 //
 // Version: 0.1
 
+
 var stationsArray = new Array();
 	
 var map = null;
@@ -33,6 +34,7 @@ if(GBrowserIsCompatible()) {
 		this.label = label;
 		this.html = html;
 	}
+	
 	function loadStations() {
 		
 			GDownloadUrl('citybikes.kml', function(doc) {
@@ -60,12 +62,15 @@ if(GBrowserIsCompatible()) {
 				}
 			});
 			
+			mapDraw(false);
+			
 			//Script is executed too fast for stationsArray to be populated
-			setTimeout("mapDraw(true,true,null,null)", 200);
+			
+			setTimeout("drawAllMarkers()", 200);
 		
 	}
 	
-	function mapDraw(allMarkers, stationsLoad, point, address) {		
+	function mapDraw(stationsLoad) {		
 		//~ if(stationsLoad) {
 			//~ loadStations();
 		//~ }
@@ -80,32 +85,28 @@ if(GBrowserIsCompatible()) {
 		geocoder = new GClientGeocoder();
 		geocoder.setViewport(mapBounds);
 		
-		if(point) {
-			map.setCenter(point, 14);
-			
-			var markerIcon = new GIcon(G_DEFAULT_ICON);
-			
-			markerIcon.image = "images/house.jpg";
-			markerIcon.iconSize = new GSize(30,30);
-			markerIcon.iconAnchor = new GPoint(15,15);
-			
-			var marker = new GMarker(point,markerIcon);
-			
-			map.addOverlay(marker);
-			
-			//~ marker.openInfoWindowHtml(address);
-		}
 		
-		
-		if(allMarkers) {
-			drawAllMarkers();
-		} else {
-			drawClosestMarkers(point);
-		}
 	}
 
 
-	function drawAllMarkers() {
+	function drawAllMarkers(addressPoint) {
+		map.clearOverlays();
+		
+		//~ if(addressPoint) {
+			//~ alert("addressPoint = true");
+			//~ map.setCenter(addressPoint, 14);
+				//~ 
+			//~ var markerIcon = new GIcon(G_DEFAULT_ICON);
+			//~ 
+			//~ markerIcon.image = "images/house.jpg";
+			//~ markerIcon.iconSize = new GSize(30,30);
+			//~ markerIcon.iconAnchor = new GPoint(15,15);
+			//~ 
+			//~ var addressMarker = new GMarker(addressPoint,markerIcon);
+			//~ 
+			//~ map.addOverlay(addressMarker);
+		//~ 
+		//~ }
 			//Reset side_bar_html
 			side_bar_html = '';
 			
@@ -132,27 +133,41 @@ if(GBrowserIsCompatible()) {
 	
 	
 	function drawClosestMarkers(addressPoint) {
-			var sortedMarkersArray = stationsArray.slice(); // Creates new array so that stationsArray doesn't get sorted
-
-			sortedMarkersArray.sort(function(a, b) {  return (a.point.distanceFrom(addressPoint) - b.point.distanceFrom(addressPoint));   });
+		map.clearOverlays();
+		
+		map.setCenter(addressPoint, 14);
 			
-			//Reset side_bar_html
-			side_bar_html = '';
-			
-			side_bar_html += '<br><table width="100%">';
-			
-			for (var i = 0; i < maxStations; i++) {				 
-			// create the marker
-			var marker = createMarker(sortedMarkersArray[i].point,sortedMarkersArray[i].label,sortedMarkersArray[i].html, sortedMarkersArray[i].point.distanceFrom(addressPoint));
-			map.addOverlay(marker);
-			}
+		var markerIcon = new GIcon(G_DEFAULT_ICON);
+		
+		markerIcon.image = "images/house.jpg";
+		markerIcon.iconSize = new GSize(30,30);
+		markerIcon.iconAnchor = new GPoint(15,15);
+		
+		var addressMarker = new GMarker(addressPoint,markerIcon);
+		
+		map.addOverlay(addressMarker);
+		
+		var sortedMarkersArray = stationsArray.slice(); // Creates new array so that stationsArray doesn't get sorted
 
-			// closing tag for side_bar_html
-			side_bar_html += '</table>';
+		sortedMarkersArray.sort(function(a, b) {  return (a.point.distanceFrom(addressPoint) - b.point.distanceFrom(addressPoint));   });
+		
+		//Reset side_bar_html
+		side_bar_html = '';
+		
+		side_bar_html += '<br><table width="100%">';
+		
+		for (var i = 0; i < maxStations; i++) {				 
+		// create the marker
+		var marker = createMarker(sortedMarkersArray[i].point,sortedMarkersArray[i].label,sortedMarkersArray[i].html, sortedMarkersArray[i].point.distanceFrom(addressPoint));
+		map.addOverlay(marker);
+		}
 
-			// put the assembled side_bar_html contents into the results div
-			document.getElementById('results').innerHTML = side_bar_html;
-		  //~ });
+		// closing tag for side_bar_html
+		side_bar_html += '</table>';
+
+		// put the assembled side_bar_html contents into the results div
+		document.getElementById('results').innerHTML = side_bar_html;
+	  //~ });
 	}
 	
 			
@@ -191,19 +206,22 @@ if(GBrowserIsCompatible()) {
 	function setAddress(address) {
 	  if(address) {
 		  if (geocoder) {
+			  //~ alert("geocoder = true");
 			geocoder.getLatLng(
 			  address,
 			  function(point) {
 				if (!point) {
 				  alert(address + " not found");
 				} else {
-				  mapDraw(false, false, point, address);
+					drawClosestMarkers(point);
+					$.get('/citybikes/register?addr=' + address + "&lat=" + point.lat() + "&lng=" + point.lng(), function(returnCode){if(returnCode==1){alert(returnCode);}});
+				  //mapDraw(false, false, point, address);
 				}
 			  }
 			);
 		  }
 	  } else {
-		  mapDraw(true, false, null, null);
+		  drawAllMarkers(address);
 	  }
 	  //~ alert("stationsArray.length = " + stationsArray.length);
 	}
