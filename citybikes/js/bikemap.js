@@ -131,7 +131,8 @@ if(GBrowserIsCompatible()) {
 	
 	
 	function drawClosestMarkers(addressPoint) {
-			var sortedMarkersArray = stationsArray.sort(function(a, b) {  return (a.point.distanceFrom(addressPoint) - b.point.distanceFrom(addressPoint));   });
+			var sortedMarkersArray = stationsArray; 
+			sortedMarkersArray.sort(function(a, b) {  return (a.point.distanceFrom(addressPoint) - b.point.distanceFrom(addressPoint));   });
 			
 			//Reset side_bar_html
 			side_bar_html = '';
