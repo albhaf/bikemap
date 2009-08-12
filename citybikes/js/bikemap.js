@@ -66,7 +66,7 @@ if(GBrowserIsCompatible()) {
 			
 			//Script is executed too fast for stationsArray to be populated
 			
-			setTimeout("drawAllMarkers()", 200);
+			setTimeout("drawAllMarkers()", 300);
 		
 	}
 	
