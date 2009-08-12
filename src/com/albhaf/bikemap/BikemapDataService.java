@@ -18,17 +18,15 @@ public class BikemapDataService {
 		con = DriverManager.getConnection(databaseURL, databaseUser, databasePassword);
 	}
 	
+
 	/**
-	 * Creates the logging database
-	 * WARNING: Removes all previous data, only use when database or table does not yet exist
+	 *  
 	 */
-	public void createTable() {
+	public void executeStatement(String SQLStatement) {
 		PreparedStatement stmt = null;
 		
-		String DBStatement = "CREATE TABLE `citybikes` (`ID` INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(ID),`IPAddress` varchar(30) default NULL,`Timestamp` TIMESTAMP,`Address` varchar(100) default NULL,`Lat` varchar(30) default NULL,`Lng` varchar(30) default NULL)";
-		
 		try {
-			stmt = con.prepareStatement(DBStatement);
+			stmt = con.prepareStatement(SQLStatement);
 			stmt.executeUpdate();
 		} catch (Exception e) {
 			
@@ -36,7 +34,7 @@ public class BikemapDataService {
 			try {if(stmt != null) stmt.close();} catch(Exception e) {}
 		}
 	}
-	
+
 	/**
 	 * 
 	 */
@@ -44,7 +42,7 @@ public class BikemapDataService {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = con.prepareStatement("INSERT INTO citybikes (Timestamp, IPAddress, Address, Lat, Lng) VALUES(?, ?, ?, ?, ?)");
+			stmt = con.prepareStatement("INSERT INTO citybikes_search_log (Timestamp, IPAddress, Address, Lat, Lng) VALUES(?, ?, ?, ?, ?)");
 			stmt.setTimestamp(1, new java.sql.Timestamp(System.currentTimeMillis()));
 			stmt.setString(2, ipaddress);
 			stmt.setString(3, address);
@@ -59,4 +57,5 @@ public class BikemapDataService {
 			
 		}
 	}
+	
 }

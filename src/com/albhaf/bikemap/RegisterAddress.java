@@ -19,7 +19,9 @@ public class RegisterAddress extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("Unable to connect to database!",  e);
-		} 
+		}
+		
+		bds.executeStatement("CREATE TABLE IF NOT EXISTS`citybikes_search_log` (`ID` INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(ID),`IPAddress` varchar(30) default NULL,`Timestamp` TIMESTAMP,`Address` varchar(100) default NULL,`Lat` varchar(30) default NULL,`Lng` varchar(30) default NULL)");
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
