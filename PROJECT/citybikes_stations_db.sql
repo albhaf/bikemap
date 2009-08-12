@@ -1,0 +1,9 @@
+CREATE TABLE `citybikes_stations_db` (
+	`STATION_ID` INT,
+	PRIMARY KEY(STATION_ID),
+	`STATION_NAME` varchar(40) default NULL,
+	`STATION_LAT` float,
+	`STATION_LNG` float,
+	`STATION_MAX_SLOTS` INT,
+	`STATION_BIKES` INT
+) 

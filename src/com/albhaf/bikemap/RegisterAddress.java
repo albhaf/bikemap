@@ -21,7 +21,7 @@ public class RegisterAddress extends HttpServlet {
 			throw new ServletException("Unable to connect to database!",  e);
 		}
 		
-		bds.executeStatement("CREATE TABLE IF NOT EXISTS`citybikes_search_log` (`ID` INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(ID),`IPAddress` varchar(30) default NULL,`Timestamp` TIMESTAMP,`Address` varchar(100) default NULL,`Lat` varchar(30) default NULL,`Lng` varchar(30) default NULL)");
+		bds.executeStatement("CREATE TABLE IF NOT EXISTS`citybikes_search_log` (`ID` INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(ID),`IPAddress` varchar(20) default NULL,`Timestamp` TIMESTAMP,`Address` varchar(40) default NULL,`Lat` float default NULL,`Lng` float default NULL)");
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

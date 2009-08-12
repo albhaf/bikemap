@@ -58,4 +58,8 @@ public class BikemapDataService {
 		}
 	}
 	
+	public void registerStation(int station_id, String station_name, float station_lat, float station_lng, int station_slots, int station_bikes) {
+		
+	}
+	
 }

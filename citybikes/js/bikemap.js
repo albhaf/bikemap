@@ -214,7 +214,7 @@ if(GBrowserIsCompatible()) {
 				  alert(address + " not found");
 				} else {
 					drawClosestMarkers(point);
-					$.get('/citybikes/register?addr=' + address + "&lat=" + point.lat() + "&lng=" + point.lng(), function(returnCode){if(returnCode==1){alert(returnCode);}});
+					$.get("/citybikes/register?addr=" + address + "&lat=" + point.lat() + "&lng=" + point.lng(), function(returnCode){if(returnCode==1){alert(returnCode);}});
 				  //mapDraw(false, false, point, address);
 				}
 			  }
