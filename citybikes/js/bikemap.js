@@ -12,6 +12,9 @@ var stationsAreaArray4 = new Array(); // Kungsholmen/Lilla essingen
 var stationsAreaArray5 = new Array(); // Norrmalm/City
 var stationsAreaArray6 = new Array(); // Östermalm/Hjorthagen
 
+
+var areas = { };
+
 var maxStations = 10;
 
 var map = null;
@@ -66,39 +69,51 @@ if(GBrowserIsCompatible()) {
 
 			var area = markers[j].getElementsByTagName('area')[0].firstChild.nodeValue;
 
+			var arr = areas[area];
+			if(!arr) { arr = new Array();
+			  areas[area] = arr; 
+			}
+
+			arr.push(new citybikeStation(point,label,html, area));
+
+
 			stationsArray[j] = new citybikeStation(point,label,html, area);
 
 		}
 
-		for (var i = 0; i < stationsArray.length; i++) {
-			var area_code = stationsArray[i].area;
-			switch(area_code) {
-				case "1":
-					stationsAreaArray1.push(stationsArray[i]);
-				stationsAreaArray1.sort(sortByStationName);
-				break;
-				case "2":
-					stationsAreaArray2.push(stationsArray[i]);
-				stationsAreaArray2.sort(sortByStationName);
-				break;
-				case "3":
-					stationsAreaArray3.push(stationsArray[i]);
-				stationsAreaArray3.sort(sortByStationName);
-				break;
-				case "4":
-					stationsAreaArray4.push(stationsArray[i]);
-				stationsAreaArray4.sort(sortByStationName);
-				break;
-				case "5":
-					stationsAreaArray5.push(stationsArray[i]);
-				stationsAreaArray5.sort(sortByStationName);
-				break;
-				case "6":
-					stationsAreaArray6.push(stationsArray[i]);
-				stationsAreaArray6.sort(sortByStationName);
-				break;
-			}
+		for(var key in areas) {
+			areas[key].sort(sortByStationName);
 		}
+		
+		//~ for (var i = 0; i < stationsArray.length; i++) {
+			//~ var area_code = stationsArray[i].area;
+			//~ switch(area_code) {
+				//~ case "1":
+					//~ stationsAreaArray1.push(stationsArray[i]);
+				//~ stationsAreaArray1.sort(sortByStationName);
+				//~ break;
+				//~ case "2":
+					//~ stationsAreaArray2.push(stationsArray[i]);
+				//~ stationsAreaArray2.sort(sortByStationName);
+				//~ break;
+				//~ case "3":
+					//~ stationsAreaArray3.push(stationsArray[i]);
+				//~ stationsAreaArray3.sort(sortByStationName);
+				//~ break;
+				//~ case "4":
+					//~ stationsAreaArray4.push(stationsArray[i]);
+				//~ stationsAreaArray4.sort(sortByStationName);
+				//~ break;
+				//~ case "5":
+					//~ stationsAreaArray5.push(stationsArray[i]);
+				//~ stationsAreaArray5.sort(sortByStationName);
+				//~ break;
+				//~ case "6":
+					//~ stationsAreaArray6.push(stationsArray[i]);
+				//~ stationsAreaArray6.sort(sortByStationName);
+				//~ break;
+			//~ }
+		//~ }
 
 		mapDraw();
 		drawAllMarkers();
@@ -121,41 +136,49 @@ if(GBrowserIsCompatible()) {
 		gmarkers = [];	
 		side_bar_html = '<table width="100%">';
 		
-		side_bar_html += '<h3>S&ouml;dermalm</h3>';
-		for (var i = 0; i < stationsAreaArray1.length; i++) {
-		  var marker = createMarker(stationsAreaArray1[i].point,stationsAreaArray1[i].label,stationsAreaArray1[i].html);
-		  map.addOverlay(marker);
+		for( var key in areas ) {
+			side_bar_html += '<h3>' + key + '</h3>';
+			for (var i = 0; i < areas[key].length; i++) {
+				var marker = createMarker(areas[key][i].point, areas[key][i].label, areas[key][i].html);
+				map.addOverlay(marker);
+			} 
 		}
 		
-		side_bar_html += '<h3>Gamla stan/Djurg&aring;rden</h3>';
-		for (var i = 0; i < stationsAreaArray2.length; i++) {
-		  var marker = createMarker(stationsAreaArray2[i].point,stationsAreaArray2[i].label,stationsAreaArray2[i].html);
-		  map.addOverlay(marker);
-		}
-		
-		side_bar_html += '<h3>Vasastan</h3>';
-		for (var i = 0; i < stationsAreaArray3.length; i++) {
-		  var marker = createMarker(stationsAreaArray3[i].point,stationsAreaArray3[i].label,stationsAreaArray3[i].html);
-		  map.addOverlay(marker);
-		}
-		
-		side_bar_html += '<h3>Kungsholmen/Lilla essingen</h3>';
-		for (var i = 0; i < stationsAreaArray4.length; i++) {
-		  var marker = createMarker(stationsAreaArray4[i].point,stationsAreaArray4[i].label,stationsAreaArray4[i].html);
-		  map.addOverlay(marker);
-		}
-		
-		side_bar_html += '<h3>Norrmalm/City</h3>';
-		for (var i = 0; i < stationsAreaArray5.length; i++) {
-		  var marker = createMarker(stationsAreaArray5[i].point,stationsAreaArray5[i].label,stationsAreaArray5[i].html);
-		  map.addOverlay(marker);
-		}
-		
-		side_bar_html += '<h3>&Ouml;stermalm/Hjorthagen</h3>';
-		for (var i = 0; i < stationsAreaArray6.length; i++) {
-		  var marker = createMarker(stationsAreaArray6[i].point,stationsAreaArray6[i].label,stationsAreaArray6[i].html);
-		  map.addOverlay(marker);
-		}
+		//~ side_bar_html += '<h3>S&ouml;dermalm</h3>';
+		//~ for (var i = 0; i < stationsAreaArray1.length; i++) {
+		  //~ var marker = createMarker(stationsAreaArray1[i].point,stationsAreaArray1[i].label,stationsAreaArray1[i].html);
+		  //~ map.addOverlay(marker);
+		//~ }
+		//~ 
+		//~ side_bar_html += '<h3>Gamla stan/Djurg&aring;rden</h3>';
+		//~ for (var i = 0; i < stationsAreaArray2.length; i++) {
+		  //~ var marker = createMarker(stationsAreaArray2[i].point,stationsAreaArray2[i].label,stationsAreaArray2[i].html);
+		  //~ map.addOverlay(marker);
+		//~ }
+		//~ 
+		//~ side_bar_html += '<h3>Vasastan</h3>';
+		//~ for (var i = 0; i < stationsAreaArray3.length; i++) {
+		  //~ var marker = createMarker(stationsAreaArray3[i].point,stationsAreaArray3[i].label,stationsAreaArray3[i].html);
+		  //~ map.addOverlay(marker);
+		//~ }
+		//~ 
+		//~ side_bar_html += '<h3>Kungsholmen/Lilla essingen</h3>';
+		//~ for (var i = 0; i < stationsAreaArray4.length; i++) {
+		  //~ var marker = createMarker(stationsAreaArray4[i].point,stationsAreaArray4[i].label,stationsAreaArray4[i].html);
+		  //~ map.addOverlay(marker);
+		//~ }
+		//~ 
+		//~ side_bar_html += '<h3>Norrmalm/City</h3>';
+		//~ for (var i = 0; i < stationsAreaArray5.length; i++) {
+		  //~ var marker = createMarker(stationsAreaArray5[i].point,stationsAreaArray5[i].label,stationsAreaArray5[i].html);
+		  //~ map.addOverlay(marker);
+		//~ }
+		//~ 
+		//~ side_bar_html += '<h3>&Ouml;stermalm/Hjorthagen</h3>';
+		//~ for (var i = 0; i < stationsAreaArray6.length; i++) {
+		  //~ var marker = createMarker(stationsAreaArray6[i].point,stationsAreaArray6[i].label,stationsAreaArray6[i].html);
+		  //~ map.addOverlay(marker);
+		//~ }
 		
 		map.setCenter( latlngBounds.getCenter( ), map.getBoundsZoomLevel( latlngBounds ) );
 		

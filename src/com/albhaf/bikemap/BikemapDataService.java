@@ -24,14 +24,12 @@ public class BikemapDataService {
 	/**
 	 *  
 	 */
-	public void executeStatement(String SQLStatement) {
+	public void executeStatement(String SQLStatement) throws Exception {
 		PreparedStatement stmt = null;
 		
 		try {
 			stmt = con.prepareStatement(SQLStatement);
 			stmt.executeUpdate();
-		} catch (Exception e) {
-			
 		} finally {
 			try {if(stmt != null) stmt.close();} catch(Exception e) {}
 		}
@@ -60,14 +58,14 @@ public class BikemapDataService {
 		}
 	}
 	
-	public void registerStation(int station_id, String station_name, int station_area, float station_lat, float station_lng, int station_slots, int station_bikes) {
+	public void registerStation(int station_id, String station_name, String station_area, float station_lat, float station_lng, int station_slots, int station_bikes) {
 		PreparedStatement stmt = null;
 		
 		try {
-			stmt = con.prepareStatement("INSERT INTO citybikes_stations_db (STATION_ID, STATION_NAME, STATION_AREA_CODE, STATION_LAT, STATION_LNG, STATION_SLOTS, STATION_BIKES) VALUES(?, ?, ?, ?, ?, ?, ?)");
+			stmt = con.prepareStatement("INSERT INTO citybikes_stations_db (STATION_ID, STATION_NAME, STATION_AREA, STATION_LAT, STATION_LNG, STATION_SLOTS, STATION_BIKES) VALUES(?, ?, ?, ?, ?, ?, ?)");
 			stmt.setInt(1, station_id);
 			stmt.setString(2, station_name);
-			stmt.setInt(3, station_area);
+			stmt.setString(3, station_area);
 			stmt.setFloat(4, station_lat);
 			stmt.setFloat(5, station_lng);
 			stmt.setInt(6, station_slots);
@@ -101,9 +99,7 @@ public class BikemapDataService {
 		} finally {
 			try {if(rowStmt != null) rowStmt.close();} catch(Exception e) {}
 		}
-		
-//		System.out.println("count = " + count);
-		
+				
 		CitybikeStation[] stationsArray = new CitybikeStation[(count)];
 		
 		stmt = con.createStatement();
@@ -115,7 +111,7 @@ public class BikemapDataService {
 		while (stations != null && stations.next()) {
 			int id = stations.getInt("STATION_ID");
 			String name = stations.getString("STATION_NAME");
-			int area = stations.getInt("STATION_AREA_CODE");
+			String area = stations.getString("STATION_AREA");
 			float lat = stations.getFloat("STATION_LAT");
 			float lng = stations.getFloat("STATION_LNG");
 			int slots = stations.getInt("STATION_SLOTS");
@@ -123,9 +119,7 @@ public class BikemapDataService {
 			
 			stationsArray[dbEntry++] = new CitybikeStation(id, name, area, lat, lng, slots, bikes);
 			
-		}
-//		System.out.println("dbEntry = " + dbEntry);
-		
+		}		
 		return stationsArray;
 	}
 	

@@ -16,12 +16,12 @@ public class RegisterAddress extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		try {
 			bds = new BikemapDataService(config.getInitParameter("database.url"), config.getInitParameter("database.user"), config.getInitParameter("database.password"));
+			bds.executeStatement("CREATE TABLE IF NOT EXISTS`citybikes_search_log` (`ID` INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(ID),`IPAddress` varchar(20) default NULL,`Timestamp` TIMESTAMP,`Address` varchar(40) default NULL,`Lat` float default NULL,`Lng` float default NULL)");
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ServletException("Unable to connect to database!",  e);
 		}
 		
-		bds.executeStatement("CREATE TABLE IF NOT EXISTS`citybikes_search_log` (`ID` INT NOT NULL AUTO_INCREMENT,PRIMARY KEY(ID),`IPAddress` varchar(20) default NULL,`Timestamp` TIMESTAMP,`Address` varchar(40) default NULL,`Lat` float default NULL,`Lng` float default NULL)");
 	}
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
