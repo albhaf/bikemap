@@ -1,4 +1,4 @@
-CREATE TABLE `citybikes_stations_db` (
+CREATE TABLE IF NOT EXISTS `citybikes_stations_db` (
 	`STATION_ID` INT,
 	PRIMARY KEY(STATION_ID),
 	`STATION_NAME` varchar(40) default NULL,

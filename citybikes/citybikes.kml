@@ -2051,6 +2051,7 @@
 		<open>1</open>
 		<Placemark>
 			<name>1 Allmänna gränd/Gröna Lund</name>
+			<area>2</area>
 			<LookAt>
 				<longitude>18.09546726370914</longitude>
 				<latitude>59.32429464320251</latitude>
@@ -2067,6 +2068,7 @@
 		</Placemark>
 		<Placemark>
 			<name>2 Götgatan 98/Dalslandsgatan</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.07534822431631</longitude>
 				<latitude>59.30910329704198</latitude>
@@ -2083,6 +2085,7 @@
 		</Placemark>
 		<Placemark>
 			<name>3 Tjärhovsplan</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.08405707222018</longitude>
 				<latitude>59.31616723638531</latitude>
@@ -2099,6 +2102,7 @@
 		</Placemark>
 		<Placemark>
 			<name>4 Thor Modéns Trappa, Slussen*</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.07368189959966</longitude>
 				<latitude>59.31882940805788</latitude>
@@ -2115,6 +2119,7 @@
 		</Placemark>
 		<Placemark>
 			<name>5 Medborgarplatsen*</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.07344479561011</longitude>
 				<latitude>59.314853231593</latitude>
@@ -2131,6 +2136,7 @@
 		</Placemark>
 		<Placemark>
 			<name>6  Valhallav./Grev Tureg., Stadion*</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.08171320327419</longitude>
 				<latitude>59.34279675891748</latitude>
@@ -2147,6 +2153,7 @@
 		</Placemark>
 		<Placemark>
 			<name>7  Valhallav., Tekniska Högskolan*</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.07142063753079</longitude>
 				<latitude>59.34566805276724</latitude>
@@ -2163,6 +2170,7 @@
 		</Placemark>
 		<Placemark>
 			<name>8  Drottningholmsv. 13, Fridhemsplan*</name>
+			<area>4</area>
 			<LookAt>
 				<longitude>18.03111943163437</longitude>
 				<latitude>59.33212489924226</latitude>
@@ -2179,6 +2187,7 @@
 		</Placemark>
 		<Placemark>
 			<name>9  S:t Göransg. 143, Stadshagen*</name>
+			<area>4</area>
 			<LookAt>
 				<longitude>18.01768300000001</longitude>
 				<latitude>59.33659500000001</latitude>
@@ -2195,6 +2204,7 @@
 		</Placemark>
 		<Placemark>
 			<name>10 Fleminggatan 4-6</name>
+			<area>4</area>
 			<LookAt>
 				<longitude>18.04749858327464</longitude>
 				<latitude>59.33254987255128</latitude>
@@ -2211,6 +2221,7 @@
 		</Placemark>
 		<Placemark>
 			<name>11 Hornsgatan 140, Hornstull*</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.0419571351442</longitude>
 				<latitude>59.31623915706355</latitude>
@@ -2227,6 +2238,7 @@
 		</Placemark>
 		<Placemark>
 			<name>12 Munkbroleden, Gamla Stan*</name>
+			<area>2</area>
 			<LookAt>
 				<longitude>18.06806300000001</longitude>
 				<latitude>59.323067</latitude>
@@ -2243,6 +2255,7 @@
 		</Placemark>
 		<Placemark>
 			<name>13 Odenplan mot S:t Eriksgatan*</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.04933449670277</longitude>
 				<latitude>59.34301113123504</latitude>
@@ -2259,6 +2272,7 @@
 		</Placemark>
 		<Placemark>
 			<name>14 Odenplan mot Sveavägen*</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.05120717324845</longitude>
 				<latitude>59.34287130244272</latitude>
@@ -2275,6 +2289,7 @@
 		</Placemark>
 		<Placemark>
 			<name>15 S:t Eriksplan 6C*</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.03747204009147</longitude>
 				<latitude>59.33955151878356</latitude>
@@ -2291,6 +2306,7 @@
 		</Placemark>
 		<Placemark>
 			<name>16 Klarabergsgatan 50, T-Centralen*</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.06167097196509</longitude>
 				<latitude>59.33204470646603</latitude>
@@ -2307,6 +2323,7 @@
 		</Placemark>
 		<Placemark>
 			<name>17 Renstiernas Gata 18</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.08384500000003</longitude>
 				<latitude>59.315364</latitude>
@@ -2323,6 +2340,7 @@
 		</Placemark>
 		<Placemark>
 			<name>18 Fatbursgången, Södra Station**</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.06521694557453</longitude>
 				<latitude>59.31433163672683</latitude>
@@ -2339,6 +2357,7 @@
 		</Placemark>
 		<Placemark>
 			<name>20 Folkungag. 134/Stigbergsparken</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.08845000000001</longitude>
 				<latitude>59.315583</latitude>
@@ -2355,6 +2374,7 @@
 		</Placemark>
 		<Placemark>
 			<name>21 Mariatorget 7*</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.06352472522266</longitude>
 				<latitude>59.31781773253365</latitude>
@@ -2371,6 +2391,7 @@
 		</Placemark>
 		<Placemark>
 			<name>22 Södermalmstorg, Slussen*</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.07168651530997</longitude>
 				<latitude>59.32012084569233</latitude>
@@ -2387,6 +2408,7 @@
 		</Placemark>
 		<Placemark>
 			<name>23 Ringvägen 54</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.06235179520164</longitude>
 				<latitude>59.30929862083921</latitude>
@@ -2403,6 +2425,7 @@
 		</Placemark>
 		<Placemark>
 			<name>24 Ringvägen 45A</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.05497352394544</longitude>
 				<latitude>59.31266060369803</latitude>
@@ -2419,6 +2442,7 @@
 		</Placemark>
 		<Placemark>
 			<name>25 Ringvägen 108</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.08063688927126</longitude>
 				<latitude>59.3084231440244</latitude>
@@ -2435,6 +2459,7 @@
 		</Placemark>
 		<Placemark>
 			<name>26 Ringvägen 111, Skanstull*</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.07488712385573</longitude>
 				<latitude>59.3077409346982</latitude>
@@ -2451,6 +2476,7 @@
 		</Placemark>
 		<Placemark>
 			<name>27 Götgatan 71</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.07481600000002</longitude>
 				<latitude>59.31184799999999</latitude>
@@ -2467,6 +2493,7 @@
 		</Placemark>
 		<Placemark>
 			<name>28 Ropsten/Busstorget*</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.10421352150265</longitude>
 				<latitude>59.35735484076373</latitude>
@@ -2483,6 +2510,7 @@
 		</Placemark>
 		<Placemark>
 			<name>29 Norrmalmstorg</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.07389352150112</longitude>
 				<latitude>59.3332817470237</latitude>
@@ -2499,6 +2527,7 @@
 		</Placemark>
 		<Placemark>
 			<name>30 Torsgatan/Vasaparken</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.04069099345951</longitude>
 				<latitude>59.33953407588166</latitude>
@@ -2515,6 +2544,7 @@
 		</Placemark>
 		<Placemark>
 			<name>31 Drottninggatan/Vattugatan</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.06512465876201</longitude>
 				<latitude>59.33055045061794</latitude>
@@ -2531,6 +2561,7 @@
 		</Placemark>
 		<Placemark>
 			<name>32 Hamngatan, Gallerian</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.06914100000002</longitude>
 				<latitude>59.33194399999999</latitude>
@@ -2547,6 +2578,7 @@
 		</Placemark>
 		<Placemark>
 			<name>33 Hammarby Allé/Textilvägen</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.0907177012783</longitude>
 				<latitude>59.30217149447336</latitude>
@@ -2563,6 +2595,7 @@
 		</Placemark>
 		<Placemark>
 			<name>34 Skeppsbrokajen</name>
+			<area>2</area>
 			<LookAt>
 				<longitude>18.07533646347825</longitude>
 				<latitude>59.32288561757483</latitude>
@@ -2579,6 +2612,7 @@
 		</Placemark>
 		<Placemark>
 			<name>35 Drottningg., T-Centralen*</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.06232647026415</longitude>
 				<latitude>59.33205838744769</latitude>
@@ -2595,6 +2629,7 @@
 		</Placemark>
 		<Placemark>
 			<name>36 Birger Jarlsg. 12, Östermalmstorg*</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.07526989350859</longitude>
 				<latitude>59.33422960977269</latitude>
@@ -2611,6 +2646,7 @@
 		</Placemark>
 		<Placemark>
 			<name>37 Karlbergsvägen 38</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.04082900000001</longitude>
 				<latitude>59.342757</latitude>
@@ -2627,6 +2663,7 @@
 		</Placemark>
 		<Placemark>
 			<name>38 Centralplan, T-Centralen**</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.05939913373155</longitude>
 				<latitude>59.33092692777351</latitude>
@@ -2643,6 +2680,7 @@
 		</Placemark>
 		<Placemark>
 			<name>39 Sveavägen 66</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.06243440379981</longitude>
 				<latitude>59.33840585665176</latitude>
@@ -2659,6 +2697,7 @@
 		</Placemark>
 		<Placemark>
 			<name>40 Sveavägen 110</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.056035</longitude>
 				<latitude>59.34349600000001</latitude>
@@ -2675,6 +2714,7 @@
 		</Placemark>
 		<Placemark>
 			<name>41 Klarabergsgatan 56, T-Centralen*</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.06014608590012</longitude>
 				<latitude>59.33179226166659</latitude>
@@ -2691,6 +2731,7 @@
 		</Placemark>
 		<Placemark>
 			<name>42 Hantverkarg. 1/Stadshuset</name>
+			<area>4</area>
 			<LookAt>
 				<longitude>18.05319652234007</longitude>
 				<latitude>59.32779642124192</latitude>
@@ -2707,6 +2748,7 @@
 		</Placemark>
 		<Placemark>
 			<name>43 Hantverkarg. 1/Stadshusbron</name>
+			<area>4</area>
 			<LookAt>
 				<longitude>18.05598714995951</longitude>
 				<latitude>59.32799597032806</latitude>
@@ -2723,6 +2765,7 @@
 		</Placemark>
 		<Placemark>
 			<name>44 Bryggargatan 12B/Vasagatan</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.05967994926526</longitude>
 				<latitude>59.3323181529011</latitude>
@@ -2739,6 +2782,7 @@
 		</Placemark>
 		<Placemark>
 			<name>45 Runebergsplan</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.07172394284336</longitude>
 				<latitude>59.34127099998025</latitude>
@@ -2755,6 +2799,7 @@
 		</Placemark>
 		<Placemark>
 			<name>46 Sturegatan 19</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.07769118017045</longitude>
 				<latitude>59.34175392712996</latitude>
@@ -2771,6 +2816,7 @@
 		</Placemark>
 		<Placemark>
 			<name>47 Ringvägen 138</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.08254500000002</longitude>
 				<latitude>59.308753</latitude>
@@ -2787,6 +2833,7 @@
 		</Placemark>
 		<Placemark>
 			<name>48 Ringvägen 125</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.07845600000001</longitude>
 				<latitude>59.30809700000001</latitude>
@@ -2803,6 +2850,7 @@
 		</Placemark>
 		<Placemark>
 			<name>49 Hamngatan/Kungsträdgården</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.07144449433449</longitude>
 				<latitude>59.33224499490706</latitude>
@@ -2819,6 +2867,7 @@
 		</Placemark>
 		<Placemark>
 			<name>50 Rålambsvägen/Gjörwellsgatan</name>
+			<area>4</area>
 			<LookAt>
 				<longitude>18.017012</longitude>
 				<latitude>59.32823200000002</latitude>
@@ -2835,6 +2884,7 @@
 		</Placemark>
 		<Placemark>
 			<name>51 Karlaplan/Fältöversten*</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.09100574810539</longitude>
 				<latitude>59.33834785953282</latitude>
@@ -2851,6 +2901,7 @@
 		</Placemark>
 		<Placemark>
 			<name>52 Östermalmsgatan 90</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.087675</longitude>
 				<latitude>59.339749</latitude>
@@ -2867,6 +2918,7 @@
 		</Placemark>
 		<Placemark>
 			<name>53 Kungsgatan 24</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.06631400000001</longitude>
 				<latitude>59.33587199999999</latitude>
@@ -2883,6 +2935,7 @@
 		</Placemark>
 		<Placemark>
 			<name>54 Sveavägen 29</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.0642885187135</longitude>
 				<latitude>59.33598553566739</latitude>
@@ -2899,6 +2952,7 @@
 		</Placemark>
 		<Placemark>
 			<name>55 Sveavägen 31</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.06245400000002</longitude>
 				<latitude>59.336322</latitude>
@@ -2915,6 +2969,7 @@
 		</Placemark>
 		<Placemark>
 			<name>56 Sveavägen 35</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.06245400000002</longitude>
 				<latitude>59.336322</latitude>
@@ -2931,6 +2986,7 @@
 		</Placemark>
 		<Placemark>
 			<name>57 Sveavägen 127/Vanadislunden</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.05175229318963</longitude>
 				<latitude>59.34781656088843</latitude>
@@ -2947,6 +3003,7 @@
 		</Placemark>
 		<Placemark>
 			<name>58 Lindarängsv./Tegeluddsvägen</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.11574349033919</longitude>
 				<latitude>59.34039153106081</latitude>
@@ -2963,6 +3020,7 @@
 		</Placemark>
 		<Placemark>
 			<name>59 Tegeluddsvägen 100</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.11637740149193</longitude>
 				<latitude>59.34158554929969</latitude>
@@ -2979,6 +3037,7 @@
 		</Placemark>
 		<Placemark>
 			<name>60 Sveavägen 53</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.0598150756977</longitude>
 				<latitude>59.34032030800265</latitude>
@@ -2995,6 +3054,7 @@
 		</Placemark>
 		<Placemark>
 			<name>61 Rådmansgatan 2</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.07399466592555</longitude>
 				<latitude>59.34383555300359</latitude>
@@ -3011,6 +3071,7 @@
 		</Placemark>
 		<Placemark>
 			<name>62 S:t Eriksgatan 95</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.03876700000002</longitude>
 				<latitude>59.343026</latitude>
@@ -3027,6 +3088,7 @@
 		</Placemark>
 		<Placemark>
 			<name>63 S:t Eriksgatan 30</name>
+			<area>4</area>
 			<LookAt>
 				<longitude>18.0319663222088</longitude>
 				<latitude>59.33308707806883</latitude>
@@ -3043,6 +3105,7 @@
 		</Placemark>
 		<Placemark>
 			<name>64 Birkagatan 7-9</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.03277014322314</longitude>
 				<latitude>59.33941097494326</latitude>
@@ -3059,6 +3122,7 @@
 		</Placemark>
 		<Placemark>
 			<name>65 Tegelbacken 6</name>
+			<area>5</area>
 			<LookAt>
 				<longitude>18.06196688780869</longitude>
 				<latitude>59.32814892533199</latitude>
@@ -3075,6 +3139,7 @@
 		</Placemark>
 		<Placemark>
 			<name>66 Erik Dahlbergsgatan 26</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.09207300000001</longitude>
 				<latitude>59.34276400000001</latitude>
@@ -3091,6 +3156,7 @@
 		</Placemark>
 		<Placemark>
 			<name>67 Karlavägen 115/Garnisonen</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.09941797144393</longitude>
 				<latitude>59.3357424445441</latitude>
@@ -3107,6 +3173,7 @@
 		</Placemark>
 		<Placemark>
 			<name>68 Essinge Brogata/Mariebergsbron</name>
+			<area>4</area>
 			<LookAt>
 				<longitude>18.00794183635507</longitude>
 				<latitude>59.32541134218295</latitude>
@@ -3123,6 +3190,7 @@
 		</Placemark>
 		<Placemark>
 			<name>69 Södermälarstrand/Münchenbryggeriet</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.0533448747063</longitude>
 				<latitude>59.32072640429482</latitude>
@@ -3139,6 +3207,7 @@
 		</Placemark>
 		<Placemark>
 			<name>70 Folkungagatan/Londonviadukten</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.09752119454322</longitude>
 				<latitude>59.31460156509626</latitude>
@@ -3155,6 +3224,7 @@
 		</Placemark>
 		<Placemark>
 			<name>71 Norr Mälarstrand/Hantverkarg. 3D</name>
+			<area>4</area>
 			<LookAt>
 				<longitude>18.05205600000003</longitude>
 				<latitude>59.32787799999998</latitude>
@@ -3171,6 +3241,7 @@
 		</Placemark>
 		<Placemark>
 			<name>72 Dannemorag./Norra Stationsg.</name>
+			<area>3</area>
 			<LookAt>
 				<longitude>18.0439087084236</longitude>
 				<latitude>59.34931885187846</latitude>
@@ -3187,6 +3258,7 @@
 		</Placemark>
 		<Placemark>
 			<name>73 Kaknästornet</name>
+			<area>6</area>
 			<LookAt>
 				<longitude>18.12638100000002</longitude>
 				<latitude>59.334331</latitude>
@@ -3203,6 +3275,7 @@
 		</Placemark>
 		<Placemark>
 			<name>74 Danvikstull/Kvarnholmsvägen</name>
+			<area>1</area>
 			<LookAt>
 				<longitude>18.10796595731457</longitude>
 				<latitude>59.31184279385303</latitude>

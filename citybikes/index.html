@@ -46,12 +46,22 @@
 
 					</form>
 				</fieldset>
-
-				<button type="button" onclick="drawAllMarkers()">Show all stations</button>
-
-				<button type="button" onclick="drawAllMarkers(); map.setCenter(new GLatLng(59.32452, 18.071136), 12)">Reload map</button>
 			</div>
+			<div id="actions">
+				<table>
+					<tr>
+						<td><button type="button" onclick="showStationSearch()">Search for stations</button></td>
+						<td><button type="button" onclick="showDirectionSearch()">Get directions</button></td>
+						<td></td>
+						<td><button type="button" onclick="drawAllMarkers()">Show all stations</button></td>
+						<td><button type="button" onclick="drawAllMarkers(); map.setCenter(new GLatLng(59.32452, 18.071136), 12)">Reload map</button>
+</td>
+					</tr>
+				</table>
+				
+				
 			
+			</div>
 			
 			</div>
 

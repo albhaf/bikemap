@@ -20,9 +20,32 @@ http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
 		</init-param>
 
 	</servlet>
+	
+	<servlet>
+		<servlet-name>get_stations</servlet-name>
+		<servlet-class>com.albhaf.bikemap.GetStations</servlet-class>
+		<init-param>
+			<param-name>database.url</param-name>
+			<param-value>jdbc:mysql://localhost:3306/bikemap</param-value>
+		</init-param>
+		<init-param>
+			<param-name>database.user</param-name>
+			<param-value>bikemap</param-value>
+		</init-param>
+		<init-param>
+			<param-name>database.password</param-name>
+			<param-value>bikemap</param-value>
+		</init-param>
+
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>register</servlet-name>
 		<url-pattern>/register</url-pattern>
+	</servlet-mapping>
+	
+	<servlet-mapping>
+		<servlet-name>get_stations</servlet-name>
+		<url-pattern>/get_stations</url-pattern>
 	</servlet-mapping>
 
 	<welcome-file-list>
