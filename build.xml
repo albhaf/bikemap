@@ -21,7 +21,7 @@
 		</javac>
 	</target>
 
-	<target name="stations" description="Register the Citybikes stations in the DB">
+	<target name="stations" depends="compile" description="Register the Citybikes stations in the DB">
 		
 		<java classpath="citybikes/WEB-INF/classes" classname="com.albhaf.bikemap.RegisterStations">
 			<arg value="citybikes/citybikes.kml" />

@@ -1,9 +1,0 @@
-Area codes
-===============================
-
-Södermalm:					1
-Gamla stan / Djurgården:	2
-Vasastan:					3
-Kungsholmen/Lilla Essingen:	4
-Norrmalm/City:				5
-Östermalm/Hjorthagen:		6	

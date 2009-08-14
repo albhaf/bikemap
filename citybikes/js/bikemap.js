@@ -1,7 +1,5 @@
 // bikemap.js
 // Author: Albert Hafvenström <albhaf@gmail.com>
-//
-// Version: 0.2-rc4
 
 var stationsArray = new Array();
 
