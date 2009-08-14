@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <project name="bikemap" default="compile">
-	<path id="libraries">
+	<path id="servlet-api">
 		<fileset dir="./lib">
-			<include name="*.jar" />
+			<include name="servlet*.jar" />
 		</fileset>
 	</path>
 
@@ -17,8 +17,21 @@
 	<target name="compile" description="compile the Java source code to class files">
 		<mkdir dir="citybikes/WEB-INF/classes" />
 		<javac srcdir="src" destdir="citybikes/WEB-INF/classes">
-			<classpath refid="libraries" />
+			<classpath refid="servlet-api" />
 		</javac>
+	</target>
+
+	<target name="stations" description="Register the Citybikes stations in the DB">
+		
+		<java classpath="citybikes/WEB-INF/classes" classname="com.albhaf.bikemap.RegisterStations">
+			<arg value="citybikes/citybikes.kml" />
+			<arg value="citybikes/WEB-INF/web.xml" />
+			<classpath>
+				<pathelement location="lib/mysql-connector-java-5.1.8-bin.jar" />
+				<pathelement path="${java.class.path}" />
+			</classpath>	
+		</java>	
+
 	</target>
 
 	<target name="jar" depends="compile" description="create jar file">
