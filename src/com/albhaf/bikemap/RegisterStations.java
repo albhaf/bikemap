@@ -40,7 +40,7 @@ public class RegisterStations {
 			
 			int id = Integer.parseInt(readElement(stationElement, "name").split(" ", 2)[0]);
 			String name = readElement(stationElement, "name").split(" ", 2)[1];
-			String area = readElement(stationElement, "id");
+			String area = readElement(stationElement, "area");
 			float lat = Float.parseFloat(readElement(stationElement, "latitude"));
 			float lng = Float.parseFloat(readElement(stationElement, "longitude"));
 			
