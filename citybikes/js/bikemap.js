@@ -3,7 +3,6 @@
 //
 // Version: 0.2-rc1
 
-
 var stationsArray = new Array();
 
 var stationsAreaArray1 = new Array(); // Södermalm
@@ -12,31 +11,24 @@ var stationsAreaArray3 = new Array(); // Vasastan
 var stationsAreaArray4 = new Array(); // Kungsholmen/Lilla essingen
 var stationsAreaArray5 = new Array(); // Norrmalm/City
 var stationsAreaArray6 = new Array(); // Östermalm/Hjorthagen
-	
+
+var maxStations = 10;
+
 var map = null;
 var geocoder = null;
 
-var directionBounds = new GLatLngBounds();
+var latlngBounds;
 
-var maxDistance = 1000;
-var maxStations = 10;
+var address = null; //
+var point = null; //
 
-var address = null;
-var point = null;
-
-// arrays to hold copies of the markers used by the side_bar
-// because the function closure trick doesnt work there
 var gmarkers = [];
-
-// this variable will collect the html which will eventually be placed in the side_bar
 var side_bar_html = '';
 
 if(GBrowserIsCompatible()) {
-
-
 	var activeMarker = new GMarker(new GLatLng(59.32452, 18.071136));
-
 	var bounds = new GLatLngBounds();
+	var directionBounds = new GLatLngBounds();
 
 	function citybikeStation(point, label, html, area) {
 		this.point = point;
@@ -59,8 +51,6 @@ if(GBrowserIsCompatible()) {
 
 
 		for(var j = 0; j < markers.length; j++) {
-			// obtain the attribues of each marker
-
 			var lat = parseFloat(markers[j].getElementsByTagName('latitude')[0].firstChild.nodeValue);
 			var lng = parseFloat(markers[j].getElementsByTagName('longitude')[0].firstChild.nodeValue);
 
@@ -81,7 +71,6 @@ if(GBrowserIsCompatible()) {
 		}
 
 		for (var i = 0; i < stationsArray.length; i++) {
-
 			var area_code = stationsArray[i].area;
 			switch(area_code) {
 				case "1":
@@ -110,43 +99,27 @@ if(GBrowserIsCompatible()) {
 				break;
 			}
 		}
-		//});
 
-		mapDraw(false);
-
-		//Script is executed too fast for stationsArray to be populated
-
-		//setTimeout("drawAllMarkers()", 300);
+		mapDraw();
 		drawAllMarkers();
-
 }
 	
-function mapDraw(stationsLoad) {		
-	//~ if(stationsLoad) {
-	//~ loadStations();
-	//~ }
-	//~ var t=setTimeout("", 500);
+	function mapDraw() {	
+		map = new GMap2(document.getElementById('map'));
+		map.addControl(new GLargeMapControl());
+		map.addControl(new GMapTypeControl());
+		map.enableScrollWheelZoom();
+		map.setCenter(new GLatLng(59.32452, 18.071136), 12);
+		var mapBounds = map.getBounds();
+		geocoder = new GClientGeocoder();
+		geocoder.setViewport(mapBounds);
+	}
 
-	map = new GMap2(document.getElementById('map'));
-	map.addControl(new GLargeMapControl());
-	map.addControl(new GMapTypeControl());
-	map.enableScrollWheelZoom();
-	map.setCenter(new GLatLng(59.32452, 18.071136), 12);
-	var mapBounds = map.getBounds();
-	geocoder = new GClientGeocoder();
-	geocoder.setViewport(mapBounds);
-
-
-}
-
-
-	function drawAllMarkers(addressPoint) {
+	function drawAllMarkers() {
 		map.clearOverlays();
-			
-		//Reset side_bar_html
-		side_bar_html = '';
-		
-		side_bar_html += '<table width="100%">';
+		latlngBounds = new GLatLngBounds();
+		gmarkers = [];	
+		side_bar_html = '<table width="100%">';
 		
 		side_bar_html += '<h3>S&ouml;dermalm</h3>';
 		for (var i = 0; i < stationsAreaArray1.length; i++) {
@@ -184,129 +157,98 @@ function mapDraw(stationsLoad) {
 		  map.addOverlay(marker);
 		}
 		
-		// closing tag for side_bar_html
+		map.setCenter( latlngBounds.getCenter( ), map.getBoundsZoomLevel( latlngBounds ) );
+		
 		side_bar_html += '</table>';
-
-		// put the assembled side_bar_html contents into the results div
 		document.getElementById('results').innerHTML = side_bar_html;
 		  
 	}
-
-	var latlngBounds;
 	
-	function drawClosestMarkers(clearMarkers, addressPoint, maxStations) {
-		 
-		
+	function drawClosestMarkers(clearMarkers, addressPoint, maxStations, image) {
+
 		if(clearMarkers) {
 			map.clearOverlays();
-
+			gmarkers = [];
 			latlngBounds = new GLatLngBounds();
+			side_bar_html = '';
 		}
-		
-		map.setCenter(addressPoint, 14);
 			
-		var markerIcon = new GIcon(G_DEFAULT_ICON);
-		
-		markerIcon.image = "images/house.jpg";
-		markerIcon.iconSize = new GSize(30,30);
-		markerIcon.iconAnchor = new GPoint(15,15);
-		
-		var addressMarker = new GMarker(addressPoint,markerIcon);
-		
-		map.addOverlay(addressMarker);
+		setAddressMarker(addressPoint, image);
 		
 		var sortedMarkersArray = stationsArray.slice(); // Creates new array so that stationsArray doesn't get sorted
 
 		sortedMarkersArray.sort(function(a, b) {  return (a.point.distanceFrom(addressPoint) - b.point.distanceFrom(addressPoint));   });
-		
-		
-		
+
 		side_bar_html += '<table width="100%">';
 		
 		for (var i = 0; i < maxStations; i++) {				 
-		// create the marker
-		var marker = createMarker(sortedMarkersArray[i].point,sortedMarkersArray[i].label,sortedMarkersArray[i].html, sortedMarkersArray[i].point.distanceFrom(addressPoint));
-		map.addOverlay(marker);
-		latlngBounds.extend(sortedMarkersArray[i].point);
+			var marker = createMarker(sortedMarkersArray[i].point,sortedMarkersArray[i].label,sortedMarkersArray[i].html, sortedMarkersArray[i].point.distanceFrom(addressPoint));
+			map.addOverlay(marker);
 		}
 		
 		map.setCenter( latlngBounds.getCenter( ), map.getBoundsZoomLevel( latlngBounds ) );
 
-		// closing tag for side_bar_html
 		side_bar_html += '</table>';
-
-		// put the assembled side_bar_html contents into the results div
 		document.getElementById('results').innerHTML = side_bar_html;
-	}
-	
-			
+	}		
 
 	function clickMarker(i) {
 		GEvent.trigger(gmarkers[i], 'click');
-		//~ map.setCenter(gmarkers[i].getLatLng(),14);
 	}
 
 	function createMarker(point, name, html, distance) {
 		var marker = new GMarker(point);
 	
-	
 		GEvent.addListener(marker, 'click', function() {
 			marker.openInfoWindowHtml(html);
-	  
-			//Sets activeMarker to be the "clicked" marker and enables it to be closed on request.
 			activeMarker = marker;
-	  
 		});
-		// save the info we need to use later for the side_bar
+		
 		gmarkers.push(marker);
-	
-		
-		
+
 		if(distance) {
 			side_bar_html += '<tr><td class="stationName"><a href="javascript:clickMarker(' + (gmarkers.length-1) + ')">' + name + '</a></td><td class="stationDistance" style="white-space: nowrap" align="right">' + parseInt(distance) + ' <em>m</em></td></tr>';
 		} else {
 			side_bar_html += '<tr><td class="stationName"><a href="javascript:clickMarker(' + (gmarkers.length-1) + ')">' + name + '</a></td><td class="stationDistance" style="white-space: nowrap" align="right"></td></tr>';
 		 }
-
+		
+		latlngBounds.extend(point);
+		
 		return marker;
 	}
 
-function setAddress(address) {
-	if(address) {
-		if (geocoder) {
-			geocoder.getLatLng(
+	function setAddress(address) {
+		if(address) {
+			if (geocoder) {
+				geocoder.getLatLng(
 					address,
 					function(point) {
-					if (!point) {
-					alert(address + " not found");
-					} else {
-					side_bar_html = '';
-					drawClosestMarkers(true, point, maxStations);
-					$.get("/citybikes/register?addr=" + address + "&lat=" + point.lat() + "&lng=" + point.lng(), function(returnCode){if(returnCode==1){alert(returnCode);}});
+						if (!point) {
+							alert(address + " not found");
+						} else {
+							side_bar_html = '';
+							drawClosestMarkers(true, point, maxStations, "images/house.jpg");
+							$.get("/citybikes/register?addr=" + address + "&lat=" + point.lat() + "&lng=" + point.lng(), function(returnCode){if(returnCode==1){alert(returnCode);}});
+						}
 					}
-					}
-					);
+				);
+			}
+		} else {
+			drawAllMarkers();
 		}
-	} else {
-		drawAllMarkers(address);
 	}
-}
 	
 	function showStationSearch() {
-		var search_form_html = '<fieldset><legend>Search for a station near your location</legend><form name="search_form" action="#" onsubmit="setAddress(this.address.value); return false"><table><tr><td><font size="-1">Adress:  <input name="address" type="text" size="30"></font></td><td><input type="submit" value="Search"></td></tr></table></form></fieldset>';
-		
+		var search_form_html = '<fieldset><legend>Search for a station near your location</legend><form name="search_form" action="#" onsubmit="setAddress(this.address.value); return false"><table><tr><td>Adress:  <input name="address" type="text" size="30"></td><td><input type="submit" value="Search"></td></tr></table></form></fieldset>';
 		document.getElementById('search_form').innerHTML = search_form_html;
 	}
 	
 	function showDirectionSearch() {
-		var search_form_html = '<fieldset><legend>Travelling directions</legend><form name="search_form" action="#" onsubmit="drawDirectionMarkers(this.address.value,this.destination.value); return false"><table><tr><td><font size="-1">Adress:  <input name="address" type="text" size="30"></font></td><td></td></tr><tr><td><font size="-1">Destination:  <input name="destination" type="text" size="30"></font></td><td></td><td><input type="submit" value="Search"></td></tr></table></form></fieldset>';
-
+		var search_form_html = '<fieldset><legend>Travelling directions</legend><form name="search_form" action="#" onsubmit="drawDirectionMarkers(this.address.value,this.destination.value); return false"><table><tr>Adress:  <input name="address" type="text" size="30"></td><td></td></tr><tr><td>Destination:  <input name="destination" type="text" size="30"></td><td></td><td><input type="submit" value="Search"></td></tr></table></form></fieldset>';
 		document.getElementById('search_form').innerHTML = search_form_html;
 	}
 	
 	function drawDirectionMarkers(start, destination) {		
-		
-		
 		if (geocoder) {
 			geocoder.getLatLng(
 			  start,
@@ -314,9 +256,8 @@ function setAddress(address) {
 				if (!point) {
 				  alert(address + " not found");
 				} else {	
-					side_bar_html = '<h3>Address</h3>';
-					drawClosestMarkers(true, point, 5);
-					//~ createCloseMarkers(point, "images/house.jpg", "Address", 5);
+					drawClosestMarkers(true, point, 5, "images/start.jpg");
+					side_bar_html = '<h3>Address</h3>'+side_bar_html;
 					
 					geocoder.getLatLng(
 						destination,
@@ -325,26 +266,29 @@ function setAddress(address) {
 								alert(address + " not found");
 							} else {
 								side_bar_html += '<h3>Destination</h3>';
-								drawClosestMarkers(false, point, 5);
-		map.setCenter( latlngBounds.getCenter( ), map.getBoundsZoomLevel( latlngBounds ) );
-		 
-								//~ createCloseMarkers(point, "images/house.jpg", "Destination", 5);
+								drawClosestMarkers(false, point, 5, "images/goal.gif");
+								map.setCenter( latlngBounds.getCenter( ), map.getBoundsZoomLevel( latlngBounds ) );
 							}
 						}
 					);
 				}
 			  }
 			);
-		  }
-		
-		
-		// closing tag for side_bar_html
-		//~ side_bar_html += '</table>';
-		
-		// put the assembled side_bar_html contents into the results div
-		//~ document.getElementById('results').innerHTML = side_bar_html;
+		}
 	}
 	
+	function setAddressMarker(point, image) {
+		var markerIcon = new GIcon(G_DEFAULT_ICON);
+		
+		markerIcon.image = image;
+		markerIcon.iconSize = new GSize(30,30);
+		markerIcon.iconAnchor = new GPoint(15,15);
+		
+		var addressMarker = new GMarker(point,markerIcon);
+		
+		map.addOverlay(addressMarker);
+	}
+		
 	
 } else {
   alert('Sorry, the Google Maps API is not compatible with this browser');
